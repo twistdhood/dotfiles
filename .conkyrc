@@ -1,0 +1,103 @@
+background no
+use_xft yes
+xftfont 123:size=8
+xftalpha 0.1
+#update_interval 0.5
+update_interval 5
+total_run_times 0
+own_window yes
+own_window_type conky
+#own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 250 0
+maximum_width 250
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+border_width 1
+default_color gray
+default_shade_color red
+default_outline_color green
+alignment top_right
+gap_x 10
+gap_y 10
+no_buffers no
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 1
+override_utf8_locale yes
+#use_spacer yes
+use_spacer right
+#text_buffer_size 256
+imlib_cache_size 0
+
+TEXT
+
+${font OpenLogos:size=35}${color DimGray}U${font Arial:size=20}${color Tan1}GNU${color DimGray} / ${color Ivory}LINUX${font OpenLogos:size=35}t$font
+#${offset 50}${font DejaVu Sans Mono:size=8}${color DimGray}${exec cal | cut -c23-44 --complement} 
+${color DimGray} ${font :size=30}$alignc${time %H:%M}
+${voffset -30}${font :bold:size=10}$alignc${time %a %d %b. %Y}
+${alignc}${font DejaVu Sans Mono:size=8}${color DimGray}${execpi 300 DJS=`date +%_d`; cal | sed '/./!d' | sed 's/$/ /' | fold -w 21 | sed -n '/^.\{2\}/p' | sed 's/^/ /' | sed /" $DJS "/s/" $DJS "/" "'${color Tan1}'"$DJS"'${color Ivory}'" "/|sed -e '2,$s/^/${alignc}/'} 
+${voffset -35}
+${color DimGray}${font}
+${font Arial:bold:size=10}${color Tan1}SYSTEM ${color DarkSlateGray} ${hr 2}
+${font Arial:bold:size=9}${color DimGray}$sysname $kernel $alignr $machine
+Intel Core 2 Duo $alignr${freq_g cpu0}Ghz
+Uptime $alignr${uptime}
+#File System $alignr${fs_type}
+
+${font Arial:bold:size=10}${color Tan1}PROCESSORS ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=9}${color DimGray}CPU1  ${cpu cpu1}% ${cpubar cpu1}
+CPU2  ${cpu cpu2}% ${cpubar cpu2}
+
+${font Arial:bold:size=10}${color Tan1}MEMORY / HDD ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=9}${color DimGray}MEM $alignc $mem / $memmax $alignr $memperc%
+$membar
+#
+#${font Arial:bold:size=10}${color Tan1}HDD ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=9}${color DimGray}/home $alignc ${fs_used /home} / ${fs_size /home} $alignr ${fs_free_perc /home}%
+${fs_bar /home}
+${font Arial:bold:size=10}${color Tan1}TOP PROCESSES ${color DarkSlateGray}${hr 2}
+${color DimGray}${font Arial:bold:size=9}${top_mem name 2}${alignr}${top mem 2} %
+${font Arial:bold:size=9}${top_mem name 3}${alignr}${top mem 3} %
+${font Arial:bold:size=9}${top_mem name 4}${alignr}${top mem 4} %
+${font Arial:bold:size=9}${top_mem name 5}${alignr}${top mem 5} %
+${font Arial:bold:size=10}${color Tan2}NETWORK ${color DarkSlateGray}${hr 2}
+${font Arial:bold:size=9}${color DimGray}IP on em1 $alignr ${addr em1}
+Down $alignr Up
+${downspeedgraph em1 8,60 DarkSlateGray DarkSlateGray}${alignr}${upspeedgraph em1 8,60 DarkSlateGray DarkSlateGray}
+${downspeed em1} $alignr${upspeed em1} 
+${font Arial:bold:size=10}${color Tan2}WEATHER ${color DarkSlateGray}${hr 2}$color${texeci 500 bash $HOME/.Accuweather_Conky_USA_Images/acc_usa_images}
+#${image $HOME/.Accuweather_Conky_USA_Images/cc.png -p 135,615 -s 60x36 -n -f 300}${offset 10}${color DimGray}${execpi 600 sed -n '2p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+${image $HOME/.Accuweather_Conky_USA_Images/cc.png -p 110,610 -s 120x72 -n -f 300}${offset 10}${color DimGray}${execpi 600 sed -n '2p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+#temp/dewpoint
+${offset 10}${color DimGray}${execpi 600 sed -n '3p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}°F/${execpi 600 sed -n '11p' $HOME/.Accuweather_Conky_USA_Images/curr_cond|sed 's/F$//'}°F
+#wind
+${offset 10}${color DimGray}${execpi 600 sed -n '5p' $HOME/.Accuweather_Conky_USA_Images/curr_cond} ${execpi 600 sed -n '13p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+#humidity
+#${color DimGray}Hum$alignr${execpi 600 sed -n '7p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+#pressure
+#${color DimGray}Pressure$alignr${execpi 600 sed -n '8p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+#cloud cover
+#${color DimGray}Cloud$alignr${execpi 600 sed -n '9p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+#dewpoint
+#${color DimGray}Dew Point$alignr${execpi 600 sed -n '11p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+#precip
+${offset 10}${color DimGray}${execpi 600 sed -n '12p' $HOME/.Accuweather_Conky_USA_Images/curr_cond}
+
+${offset 10}${font Arial:Bold:size=10}${color DimGray}Today$color$font${goto 135}${font Arial:Bold:size=10}${color DimGray}Tomorrow$color$font
+${offset 10}${font Arial:Bold:size=10}${color Red}${execpi 600 sed -n '4p' $HOME/.Accuweather_Conky_USA_Images/tod_ton}°F${goto 135}${execpi 600 sed -n '9p' $HOME/.Accuweather_Conky_USA_Images/tod_ton|sed 's/F$//'}°F
+${offset 10}${font Arial:Bold:size=10}${color Blue}${execpi 600 sed -n '5p' $HOME/.Accuweather_Conky_USA_Images/tod_ton}°F${goto 135}${execpi 600 sed -n '10p' $HOME/.Accuweather_Conky_USA_Images/tod_ton|sed 's/F$//'}°F
+${image $HOME/.Accuweather_Conky_USA_Images/today.png -p 55,700 -s 60x36 -n -f 300}
+${image $HOME/.Accuweather_Conky_USA_Images/7.png -p 175,700 -s 60x36 -n -f 300}
+${voffset -25}${offset 5}${font Arial:size=8}${color DimGray}${execpi 600 sed -n '3p' $HOME/.Accuweather_Conky_USA_Images/tod_ton}${execpi 600 sed -n '8p' $HOME/.Accuweather_Conky_USA_Images/tod_ton}
+#${image $HOME/.Accuweather_Conky_USA_Images/radar/VA_WV.rad.gif -p 0,810 -s 260x172 -n -f 300}
+${image $HOME/.Accuweather_Conky_USA_Images/radar/VA_WV.rad.gif -p 0,755 -s 260x172 -n -f 300}
+${offset 200 }_
+${voffset 100}_
+
+#${font Arial:bold:size=9}${color DimGray}${alignr}${texeci 1800 /nethome/hudish/bin/conky-weather 16823} ${font}
+
+
